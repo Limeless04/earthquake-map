@@ -171,6 +171,12 @@ body {
   --sidebar-ring: oklch(0.72 0.15 251); /* #7aa2f7 */
 }
 
+.leaflet-tile {
+  image-rendering: pixelated;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
 .tokyonight-light {
   --background: oklch(0.98 0.005 240); /* #d5d6db - light background */
   --foreground: oklch(0.35 0.02 240); /* #565a6e - dark text */
@@ -199,5 +205,13 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .leaflet-tile {
+    image-rendering: pixelated;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 }
