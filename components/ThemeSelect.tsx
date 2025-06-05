@@ -12,6 +12,7 @@ import { useTheme } from "next-themes";
 export const ThemeSelect = () => {
   const { theme, setTheme } = useTheme();
 
+  console.log(theme);
   return (
     <>
       <Select onValueChange={setTheme}>
@@ -20,6 +21,7 @@ export const ThemeSelect = () => {
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="light">Light</SelectItem>
+          <SelectItem value="tokyonight">Tokyo Night</SelectItem>
           <SelectItem value="dark">Dark</SelectItem>
           <SelectItem value="system">System</SelectItem>
         </SelectContent>

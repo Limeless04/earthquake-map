@@ -10,6 +10,7 @@
   --font-mono: var(--font-geist-mono);
   --radius: 0.625rem;
   --background: oklch(1 0 0);
+  --destructive-foreground: oklch(0.985 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -63,6 +64,7 @@ body {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
+  --color-destructive-foreground: var(--destructive-foreground);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
@@ -125,6 +127,70 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+}
+
+.tokyonight {
+  --background: oklch(0.12 0.01 265); /* #1a1b26 - main dark background */
+  --foreground: oklch(0.85 0.02 257); /* #c0caf5 - main text color */
+  --card: oklch(0.15 0.01 265); /* #24283b - slightly lighter background */
+  --card-foreground: oklch(0.85 0.02 257); /* #c0caf5 */
+  --popover: oklch(0.15 0.01 265); /* #24283b */
+  --popover-foreground: oklch(0.85 0.02 257); /* #c0caf5 */
+  --primary: oklch(0.72 0.15 251); /* #7aa2f7 - tokyo night blue */
+  --primary-foreground: oklch(0.12 0.01 265); /* dark background for contrast */
+  --secondary: oklch(0.25 0.02 265); /* #414868 - muted blue-gray */
+  --secondary-foreground: oklch(0.85 0.02 257); /* #c0caf5 */
+  --muted: oklch(0.25 0.02 265); /* #414868 */
+  --muted-foreground: oklch(0.6 0.04 255); /* #565f89 - dimmed text */
+  --accent: oklch(0.68 0.17 330); /* #bb9af7 - tokyo night purple */
+  --accent-foreground: oklch(0.12 0.01 265); /* dark background */
+  --destructive: oklch(0.68 0.2 12); /* #f7768e - tokyo night red */
+  --destructive-foreground: oklch(
+    0.85 0.02 257
+  ); /* light foreground for contrast */
+  --border: oklch(0.25 0.02 265); /* #414868 - muted border */
+  --input: oklch(0.2 0.02 265); /* #2e344d - input background */
+  --ring: oklch(0.72 0.15 251); /* #7aa2f7 - focus ring */
+  --radius: 0.5rem;
+
+  /* Chart colors using Tokyo Night palette */
+  --chart-1: oklch(0.72 0.15 251); /* #7aa2f7 - blue */
+  --chart-2: oklch(0.75 0.17 158); /* #9ece6a - green */
+  --chart-3: oklch(0.8 0.15 88); /* #e0af68 - yellow */
+  --chart-4: oklch(0.68 0.17 330); /* #bb9af7 - purple */
+  --chart-5: oklch(0.75 0.18 26); /* #ff9e64 - orange */
+
+  /* Sidebar colors */
+  --sidebar: oklch(0.12 0.01 265); /* #1a1b26 - main background */
+  --sidebar-foreground: oklch(0.85 0.02 257); /* #c0caf5 */
+  --sidebar-primary: oklch(0.72 0.15 251); /* #7aa2f7 - tokyo night blue */
+  --sidebar-primary-foreground: oklch(0.12 0.01 265); /* dark background */
+  --sidebar-accent: oklch(0.25 0.02 265); /* #414868 - muted accent */
+  --sidebar-accent-foreground: oklch(0.85 0.02 257); /* #c0caf5 */
+  --sidebar-border: oklch(0.25 0.02 265); /* #414868 */
+  --sidebar-ring: oklch(0.72 0.15 251); /* #7aa2f7 */
+}
+
+.tokyonight-light {
+  --background: oklch(0.98 0.005 240); /* #d5d6db - light background */
+  --foreground: oklch(0.35 0.02 240); /* #565a6e - dark text */
+  --card: oklch(0.95 0.005 240); /* #cbccd1 - card background */
+  --card-foreground: oklch(0.35 0.02 240); /* #565a6e */
+  --popover: oklch(0.95 0.005 240); /* #cbccd1 */
+  --popover-foreground: oklch(0.35 0.02 240); /* #565a6e */
+  --primary: oklch(0.55 0.12 251); /* #34548a - darker blue */
+  --primary-foreground: oklch(0.98 0.005 240); /* light background */
+  --secondary: oklch(0.75 0.02 240); /* #9699a3 - muted gray */
+  --secondary-foreground: oklch(0.35 0.02 240); /* #565a6e */
+  --muted: oklch(0.85 0.01 240); /* #dfe0e5 - muted background */
+  --muted-foreground: oklch(0.55 0.02 240); /* #8389a3 */
+  --accent: oklch(0.5 0.12 295); /* #5a4a78 - muted purple */
+  --accent-foreground: oklch(0.98 0.005 240); /* light background */
+  --destructive: oklch(0.55 0.15 12); /* #8c4351 - muted red */
+  --destructive-foreground: oklch(0.98 0.005 240); /* light background */
+  --border: oklch(0.85 0.01 240); /* #dfe0e5 */
+  --input: oklch(0.9 0.005 240); /* #e9eaed - input background */
+  --ring: oklch(0.55 0.12 251); /* #34548a */
 }
 
 @layer base {
