@@ -2,17 +2,22 @@
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css";
 import "leaflet-defaulticon-compatibility";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  CircleMarker,
+} from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import { useTheme } from "next-themes";
 import { useEarthquakeData } from "@/hooks/useEarthquakeData";
-
+import SquircleLoading from "../loading/SpinnerLoading";
+import { DepthCategory } from "@/lib/utils/normalizeFeature";
 type LatLng = [number, number]; // [lat, lng]
 
-const wrappedPositions = (coordinates: [string, string, number]): LatLng[] => {
-  const [lngStr, latStr] = coordinates;
-  const lng = parseFloat(lngStr);
-  const lat = parseFloat(latStr);
+const wrappedPositions = (coordinates: [number, number, number]): LatLng[] => {
+  const [lng, lat] = coordinates;
 
   return [
     [lat, lng],
@@ -26,6 +31,32 @@ export default function MapClient() {
   const location: LatLngExpression = [-5.0, 120.0];
 
   const { data, error: fetchError, isLoading } = useEarthquakeData();
+
+  console.log(data);
+  const fillColors: Record<
+    DepthCategory,
+    {
+      fillColor: string;
+    }
+  > = {
+    shallow: { fillColor: "red" },
+    intermediate: { fillColor: "yellow" },
+    deep: { fillColor: "green" },
+  };
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center w-full h-[80vh]">
+        {" "}
+        {/* Adjust height as needed, e.g., 80vh */}
+        <SquircleLoading />
+      </div>
+    );
+  }
+
+  if (fetchError) {
+    throw Error("Something wrong went fetching data.");
+  }
+
   return (
     <MapContainer
       center={location}
@@ -48,11 +79,25 @@ export default function MapClient() {
             : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
         }
       />
+
+      <TileLayer
+        attribution="&copy; 2025 Website AEIC"
+        url="
+https://aeic.bmkg.go.id/
+        "
+      />
       {data &&
-        data.flatMap((point) => {
+        data.map((point) => {
           const coords = point.geometry.coordinates;
+          const depth = point.properties.depthCategory;
+          const fillColor = fillColors[depth];
           return wrappedPositions(coords).map(([lat, lng], i) => (
-            <Marker key={`${point.properties.id}-${i}`} position={[lat, lng]}>
+            <CircleMarker
+              key={`${point.properties.id}-${i}`}
+              center={[lat, lng]}
+              pathOptions={{ ...fillColor, stroke: false }}
+              radius={point.properties.approxRadius}
+            >
               <Popup>
                 <strong>{point.properties.place}</strong>
                 <br />
@@ -60,7 +105,7 @@ export default function MapClient() {
                 <br />
                 Depth: {point.properties.depth} km
               </Popup>
-            </Marker>
+            </CircleMarker>
           ));
         })}
     </MapContainer>

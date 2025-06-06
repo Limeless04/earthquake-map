@@ -1,23 +1,12 @@
 import useSWR from "swr";
+import { EarthquakeFeature } from "@/lib/types/earthquake";
+import {
+  NormalizedFeature,
+  normalizeFeature,
+} from "@/lib/utils/normalizeFeature";
 
-export type EarthquakeFeature = {
-  type: "Feature";
-  properties: {
-    id: string;
-    time: string;
-    mag: string;
-    place: string;
-    fase: string;
-    status: string;
-    depth: string;
-  };
-  geometry: {
-    type: "Point";
-    coordinates: [string, string, number]; // [lng, lat, depth]
-  };
-};
 export const useEarthquakeData = (): {
-  data?: EarthquakeFeature[];
+  data?: NormalizedFeature[];
   error: any;
   isLoading: boolean;
 } => {
@@ -49,7 +38,15 @@ export const useEarthquakeData = (): {
     }
   };
 
-  const { data, error, isLoading } = useSWR<EarthquakeFeature[]>(url, fetcher);
+  const {
+    data: rawData,
+    error,
+    isLoading,
+  } = useSWR<EarthquakeFeature[]>(url, fetcher);
+  const data: NormalizedFeature[] | undefined = rawData
+    ? rawData.map(normalizeFeature)
+    : [];
+
   return {
     data,
     error,
