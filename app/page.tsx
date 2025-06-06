@@ -1,16 +1,22 @@
 "use client";
+import SquircleLoading from "@/components/loading/SpinnerLoading";
 
 import dynamic from "next/dynamic";
-import { useEarthquakeData } from "@/hooks/useEarthquakeData";
 const MapClient = dynamic(() => import("@/components/maps/Map"), {
   ssr: false,
-  loading: () => <p>Loading...</p>,
+  loading: () => (
+    // This div will take up the full available height and center its content
+    <div className="flex items-center justify-center w-full h-[80vh]">
+      {" "}
+      {/* Adjust height as needed, e.g., 80vh */}
+      <SquircleLoading />
+    </div>
+  ),
 });
 export default function Home() {
-  const { data, error: fetchError, isLoading } = useEarthquakeData();
   return (
-    <div className="flex min-h-screen p-8 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col h-full w-full">
+    <div className="flex min-h-[90vh] p-8 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col items-center justify-center h-full w-full">
         <MapClient />
       </main>
     </div>

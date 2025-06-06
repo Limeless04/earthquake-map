@@ -34,9 +34,10 @@ export default function MapClient() {
       worldCopyJump={true}
       scrollWheelZoom={true}
       style={{
-        height: "100vh",
+        height: "80vh",
         width: "100%",
         zIndex: 1,
+        borderRadius: "1em",
       }}
     >
       <TileLayer
