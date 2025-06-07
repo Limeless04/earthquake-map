@@ -5,15 +5,20 @@ import "leaflet-defaulticon-compatibility";
 import {
   MapContainer,
   TileLayer,
-  Marker,
   Popup,
+  Marker,
   CircleMarker,
+  LayersControl,
 } from "react-leaflet";
 import { LatLngExpression } from "leaflet";
 import { useTheme } from "next-themes";
 import { useEarthquakeData } from "@/hooks/useEarthquakeData";
 import SquircleLoading from "../loading/SpinnerLoading";
 import { DepthCategory } from "@/lib/utils/normalizeFeature";
+
+import DrawerLayout from "@/components/layout/Drawer";
+import { Legend } from "./LegendOverlay";
+
 type LatLng = [number, number]; // [lat, lng]
 
 const wrappedPositions = (coordinates: [number, number, number]): LatLng[] => {
@@ -32,16 +37,16 @@ export default function MapClient() {
 
   const { data, error: fetchError, isLoading } = useEarthquakeData();
 
-  console.log(data);
   const fillColors: Record<
     DepthCategory,
     {
       fillColor: string;
+      displayName?: string;
     }
   > = {
-    shallow: { fillColor: "red" },
-    intermediate: { fillColor: "yellow" },
-    deep: { fillColor: "green" },
+    shallow: { fillColor: "red", displayName: "Shallow Depth" },
+    intermediate: { fillColor: "yellow", displayName: "Intermediate Depth" },
+    deep: { fillColor: "green", displayName: "Deep Depth" },
   };
   if (isLoading) {
     return (
@@ -86,6 +91,27 @@ export default function MapClient() {
 https://aeic.bmkg.go.id/
         "
       />
+
+      <LayersControl position="topright">
+        {/* Base Layers (only one visible at a time) */}
+        <LayersControl.BaseLayer name="OpenStreetMap">
+          <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        </LayersControl.BaseLayer>
+
+        <LayersControl.BaseLayer name="CartoDB Dark Matter">
+          <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+        </LayersControl.BaseLayer>
+
+        <LayersControl.BaseLayer name="CartoDB Light Matter">
+          <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
+        </LayersControl.BaseLayer>
+
+        <LayersControl.Overlay name="Marker B">
+          <DrawerLayout />
+        </LayersControl.Overlay>
+      </LayersControl>
+
+      <Legend fillColors={fillColors} title="Seismic Depth" />
       {data &&
         data.map((point) => {
           const coords = point.geometry.coordinates;

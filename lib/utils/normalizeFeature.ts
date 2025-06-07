@@ -34,7 +34,7 @@ export const normalizeFeature = (raw: EarthquakeFeature): NormalizedFeature => {
 
   const depth = parseFloat(raw.properties.depth);
   const mag = parseFloat(raw.properties.mag);
-  const approxRadius = Math.pow(10, 0.43 * mag) * 0.1;
+  const approxRadius = Math.pow(10, 0.43 * mag) * 0.01;
   const time = new Date(raw.properties.time);
   return {
     type: "Feature",
