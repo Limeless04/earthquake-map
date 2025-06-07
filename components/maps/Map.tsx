@@ -16,8 +16,8 @@ import { useEarthquakeData } from "@/hooks/useEarthquakeData";
 import SquircleLoading from "../loading/SpinnerLoading";
 import { DepthCategory } from "@/lib/utils/normalizeFeature";
 
-import DrawerLayout from "@/components/layout/Drawer";
 import { Legend } from "./LegendOverlay";
+import { PieChart } from "../common/PieChart";
 
 type LatLng = [number, number]; // [lat, lng]
 
@@ -48,6 +48,8 @@ export default function MapClient() {
     intermediate: { fillColor: "yellow", displayName: "Intermediate Depth" },
     deep: { fillColor: "green", displayName: "Deep Depth" },
   };
+
+  const isShowSeismicChart = true;
   if (isLoading) {
     return (
       <div className="flex items-center justify-center w-full h-[80vh]">
@@ -71,7 +73,7 @@ export default function MapClient() {
       scrollWheelZoom={true}
       style={{
         height: "80vh",
-        width: "100%",
+        width: "80%",
         zIndex: 1,
         borderRadius: "1em",
       }}
@@ -105,11 +107,9 @@ https://aeic.bmkg.go.id/
         <LayersControl.BaseLayer name="CartoDB Light Matter">
           <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
         </LayersControl.BaseLayer>
-
-        <LayersControl.Overlay name="Marker B">
-          <DrawerLayout />
-        </LayersControl.Overlay>
       </LayersControl>
+
+      {isShowSeismicChart && <PieChart />}
 
       <Legend fillColors={fillColors} title="Seismic Depth" />
       {data &&

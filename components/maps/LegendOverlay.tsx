@@ -22,6 +22,7 @@ export function Legend({ fillColors, title = "Legend" }: LegendProps) {
     const LegendControl = L.Control.extend({
       onAdd: function (map: L.Map) {
         const div = L.DomUtil.create("div", "info legend");
+        // For example:
         // Apply Tailwind classes for styling
         div.className =
           "p-4 rounded-lg shadow-lg text-sm " +
