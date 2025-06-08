@@ -10,11 +10,11 @@ import {
 import { useTheme } from "next-themes";
 
 export const ThemeSelect = () => {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   return (
     <Select onValueChange={setTheme}>
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger className="w-[180px] text-[var(--ring)]">
         <SelectValue placeholder="Theme" />
       </SelectTrigger>
       <SelectContent>

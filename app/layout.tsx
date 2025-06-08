@@ -44,11 +44,14 @@ export default function RootLayout({
             <Navbar />
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4">
               <LeftSidebar />
-              <main className="md:col-span-8">
+              <main className="flex items-center justify-center md:col-span-12 col-span-1">
                 {children}
-                <BottomSidebar />
               </main>
               <RightSidebar />
+
+              <div className="md:col-span-12">
+                <BottomSidebar />
+              </div>
             </div>
 
             <Footer />

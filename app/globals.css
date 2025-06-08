@@ -16,7 +16,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -27,7 +27,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.3 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -97,45 +97,45 @@ body {
 
 .dark {
   --background: oklch(0.15 0 0);
-  --foreground: oklch(1 0 0); /* Pure white */
+  --foreground: oklch(0.98 0 0); /* Soft white, avoids being blinding */
 
   --card: oklch(0.2 0 0);
-  --card-foreground: oklch(1 0 0);
+  --card-foreground: var(--foreground);
 
   --popover: oklch(0.22 0 0);
-  --popover-foreground: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
 
-  --primary: oklch(1 0 0);
-  --primary-foreground: oklch(1 0 0); /* white text on yellowish */
+  --primary: oklch(0.85 0.05 240); /* Visible color for switches/buttons */
+  --primary-foreground: oklch(0.15 0 0); /* dark text on light button */
 
   --secondary: oklch(0.35 0 0);
-  --secondary-foreground: oklch(1 0 0);
+  --secondary-foreground: var(--foreground);
 
   --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(1 0 0);
+  --muted-foreground: oklch(0.85 0 0);
 
-  --accent: oklch(0.3 0.05 240);
-  --accent-foreground: oklch(1 0 0);
+  --accent: oklch(0.55 0.15 280); /* slightly purple-blue accent */
+  --accent-foreground: var(--foreground);
 
   --destructive: oklch(0.7 0.18 25);
-  --border: oklch(0.5 0 0 / 20%);
-  --input: oklch(0.3 0 0 / 15%);
-  --ring: oklch(0.5 0 0);
+  --border: oklch(0.4 0 0 / 40%);
+  --input: oklch(0.3 0 0 / 30%);
+  --ring: oklch(0.75 0.1 250); /* bright enough to see focus */
 
-  --chart-1: oklch(0.55 0.22 260);
+  --chart-1: oklch(0.65 0.25 260);
   --chart-2: oklch(0.7 0.17 160);
   --chart-3: oklch(0.78 0.19 70);
-  --chart-4: oklch(0.65 0.25 300);
-  --chart-5: oklch(0.65 0.23 20);
+  --chart-4: oklch(0.75 0.25 300);
+  --chart-5: oklch(0.75 0.23 20);
 
   --sidebar: oklch(0.18 0 0);
-  --sidebar-foreground: oklch(1 0 0);
-  --sidebar-primary: oklch(0.55 0.22 260);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.3 0.05 240);
-  --sidebar-accent-foreground: oklch(1 0 0);
-  --sidebar-border: oklch(0.5 0 0 / 15%);
-  --sidebar-ring: oklch(0.5 0 0);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: oklch(0.75 0.15 240);
+  --sidebar-primary-foreground: oklch(0.15 0 0);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: oklch(0.5 0 0 / 25%);
+  --sidebar-ring: var(--ring);
 }
 
 .tokyonight {

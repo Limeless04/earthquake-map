@@ -37,113 +37,121 @@ export const SettingsDropdown = (props: {}) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm">
-          {" "}
-          {/* Added variant and size */}
-          Setting <ChevronDownIcon className="ml-1 h-4 w-4" />{" "}
-          {/* Added margin to icon */}
+        <Button variant="outline" size="sm" className="text-[var(--primary)]">
+          Settings <ChevronDownIcon className="ml-1 h-4 w-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuLabel>Display Options</DropdownMenuLabel>
+
+      <DropdownMenuContent className="w-64">
+        {/* === DISPLAY SECTION === */}
+        <DropdownMenuLabel className="text-xs uppercase text-right text-muted-foreground tracking-widest">
+          General Display
+        </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-all-charts" className="cursor-pointer">
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-all-charts" className="text-sm">
             Show All Charts
           </Label>
           <Switch
             id="toggle-all-charts"
             checked={show}
             onCheckedChange={toggleShow}
-            // If you want the dropdown to stay open after interaction with the switch
-            // you might need to stop event propagation.
-            // However, by default, Radix DropdownMenu closes on any interaction inside its content.
-            // If you need it to stay open, you'd need to use DropdownMenuPrimitive.Item and prevent default behavior.
-            // For simple toggles, closing is often acceptable.
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
+            onClick={(e) => e.stopPropagation()}
           />
         </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-histogram-charts" className="cursor-pointer">
-            Show Histgoram
+
+        {/* === BOTTOM SECTION === */}
+        <DropdownMenuLabel className="text-xs text-right uppercase text-muted-foreground tracking-widest mt-2">
+          Bottom Section
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-histogram-charts" className="text-sm">
+            Show Histogram
           </Label>
           <Switch
             id="toggle-histogram-charts"
             checked={showHistogram}
             onCheckedChange={toggleHistogram}
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
+            onClick={(e) => e.stopPropagation()}
           />
         </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-scatter-plots" className="cursor-pointer">
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-scatter-plots" className="text-sm">
             Show Scatter Plot
           </Label>
           <Switch
             id="toggle-scatter-plots"
             checked={showScatter}
             onCheckedChange={toggleScatter}
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
+            onClick={(e) => e.stopPropagation()}
           />
         </DropdownMenuItem>
 
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-filter" className="cursor-pointer">
+        {/* === LEFT SIDEBAR === */}
+        <DropdownMenuLabel className="text-xs text-right uppercase text-muted-foreground tracking-widest mt-2">
+          Left Sidebar
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-filter" className="text-sm">
             Show Filter
           </Label>
           <Switch
-            id="toggle-scatter-plots"
+            id="toggle-filter"
             checked={showFilter}
             onCheckedChange={toggleFilter}
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
+            onClick={(e) => e.stopPropagation()}
           />
         </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-counts" className="cursor-pointer">
-            Show Count Event
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-counts" className="text-sm">
+            Show Event Count
           </Label>
           <Switch
             id="toggle-counts"
             checked={showCount}
             onCheckedChange={toggleCount}
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
+            onClick={(e) => e.stopPropagation()}
           />
         </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-events" className="cursor-pointer">
-            Show All Event
-          </Label>
-          <Switch
-            id="toggle-events"
-            checked={showEvent}
-            onCheckedChange={toggleEvent}
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
-          />
-        </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-list-event" className="cursor-pointer">
-            Show List Event
-          </Label>
-          <Switch
-            id="toggle-list-event"
-            checked={showListEvent}
-            onCheckedChange={toggleListEvent}
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
-          />
-        </DropdownMenuItem>
-
-        <DropdownMenuItem>
-          <Label htmlFor="toggle-pie-chart" className="cursor-pointer">
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-pie-chart" className="text-sm">
             Show Pie Chart
           </Label>
           <Switch
             id="toggle-pie-chart"
             checked={showPieChart}
             onCheckedChange={togglePieChart}
-            onClick={(e) => e.stopPropagation()} // Prevents dropdown from closing when switch is clicked
+            onClick={(e) => e.stopPropagation()}
+          />
+        </DropdownMenuItem>
+
+        {/* === RIGHT SIDEBAR === */}
+        <DropdownMenuLabel className="text-xs text-right uppercase text-muted-foreground tracking-widest mt-2">
+          Right Sidebar
+        </DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-events" className="text-sm">
+            Show Latest Event
+          </Label>
+          <Switch
+            id="toggle-events"
+            checked={showEvent}
+            onCheckedChange={toggleEvent}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </DropdownMenuItem>
+        <DropdownMenuItem className="flex items-center justify-between gap-2">
+          <Label htmlFor="toggle-list-event" className="text-sm">
+            Show Event List
+          </Label>
+          <Switch
+            id="toggle-list-event"
+            checked={showListEvent}
+            onCheckedChange={toggleListEvent}
+            onClick={(e) => e.stopPropagation()}
           />
         </DropdownMenuItem>
       </DropdownMenuContent>

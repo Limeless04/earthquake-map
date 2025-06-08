@@ -8,9 +8,9 @@ export const BottomSidebar = (props: {}) => {
   const { showHistogram, showScatter } = useSettingStore((state) => state);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-1">
+    <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
       {showHistogram && (
-        <Card>
+        <Card className="w-full max-w-md md:w-[500px]">
           <CardContent>
             <h2 className="text-lg font-semibold">
               Monthly Earthquake Histogram
@@ -21,7 +21,7 @@ export const BottomSidebar = (props: {}) => {
       )}
 
       {showScatter && (
-        <Card>
+        <Card className="w-full max-w-md md:w-[500px]">
           <CardContent>
             <h2 className="text-lg font-semibold">
               Earthquake Magnitude Distribution

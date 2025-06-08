@@ -70,8 +70,8 @@ export default function MapClient() {
       worldCopyJump={true}
       scrollWheelZoom={true}
       style={{
-        height: "60vh",
-        width: "100%",
+        height: "80vh",
+        width: "80vw",
         zIndex: 1,
         borderRadius: "1em",
       }}

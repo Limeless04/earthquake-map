@@ -2,11 +2,21 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { useSettingStore } from "@/providers/SettingProvider";
+import clsx from "clsx";
+
 export const RightSidebar = (props: {}) => {
   const { showEvent, showListEvent } = useSettingStore((state) => state);
 
   return (
-    <aside className="md:col-span-2 space-y-4">
+    <aside
+      className={clsx(
+        "md:col-span-2 space-y-4 md:absolute md:top-20 md:right-0 md:w-80 md:h-full md:p-4 md:overflow-y-auto",
+        {
+          "z-50 pointer-events-auto": showEvent,
+          "z-0 pointer-events-none": !showEvent,
+        },
+      )}
+    >
       {showEvent && (
         <Card>
           <CardContent>

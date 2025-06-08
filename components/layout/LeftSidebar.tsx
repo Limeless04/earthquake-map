@@ -9,7 +9,15 @@ export const LeftSidebar = () => {
   );
 
   return (
-    <aside className="md:col-span-2 space-y-4">
+    <aside
+      className="md:col-span-2 space-y-4 md:absolute   
+      md:top-20 
+    md:left-0
+    md:w-80 
+    md:h-full 
+    md:p-4 
+    md:overflow-y-auto z-50"
+    >
       {showCount && (
         <Card>
           <CardContent>

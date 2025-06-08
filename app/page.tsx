@@ -15,8 +15,8 @@ const MapClient = dynamic(() => import("@/components/maps/Map"), {
 });
 export default function Home() {
   return (
-    <div className="flex min-h-[60vh] p-4 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col items-center justify-center h-full w-full">
+    <div className="flex min-h-[60vh] min-w-[80vw] items-center justify-center  p-4 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col items-center justify-center h-full w-full border border-[var(--border)] rounded-lg p-4">
         <MapClient />
       </main>
     </div>
