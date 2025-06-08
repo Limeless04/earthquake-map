@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const RightSidebar = (props: {}) => {
   return (
-    <aside className="col-span-2 space-y-4">
+    <aside className="md:col-span-2 space-y-4">
       <Card>
         <CardContent>
           <h2 className="text-lg font-semibold">Latest Event</h2>

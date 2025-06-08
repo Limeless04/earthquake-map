@@ -1,8 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { PieChart } from "../common/PieChart";
-export const LeftSidebar = (props: {}) => {
+export const LeftSidebar = () => {
   return (
-    <aside className="col-span-2 space-y-4">
+    <aside className="md:col-span-2 space-y-4">
       <Card>
         <CardContent>
           <h2 className="text-lg font-semibold">Number of Events</h2>

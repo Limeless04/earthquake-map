@@ -2,15 +2,16 @@ import Link from "next/link";
 import { ThemeSelect } from "./ThemeSelect";
 export const Navbar = () => {
   return (
-    <nav className="bg-[var(--background)] shadow-md py-4 px-6 flex justify-between items-center ">
-      <Link
-        href="/"
-        className="text-2xl font-bold text-[var(--primary)] hover:text-[var(--accent)] transition-colors"
-      >
-        Earthquake Map
-      </Link>
-
-      <div className="flex items-center space-x-3">
+    <header className="bg-[var(--background)] text-white p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div className="flex items-center space-x-4">
+        <Link
+          href="/"
+          className="text-2xl font-bold text-[var(--primary)] hover:text-[var(--accent)] transition-colors"
+        >
+          Earthquake Map
+        </Link>
+      </div>
+      <nav className="flex flex-wrap flex-col sm:flex-row items-center justify-center gap-2 md:gap-4">
         <Link
           href="/about"
           className="text-[var(--primary)] hover:text-[var(--accent)] transition-colors"
@@ -18,7 +19,7 @@ export const Navbar = () => {
           About
         </Link>
         <ThemeSelect />
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
