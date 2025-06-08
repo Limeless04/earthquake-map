@@ -26,7 +26,7 @@ export function Legend({ fillColors, title = "Legend" }: LegendProps) {
         // Apply Tailwind classes for styling
         div.className =
           "p-4 rounded-lg shadow-lg text-sm " +
-          "bg-[var(--background)] text-[var(--primary)] " +
+          "bg-[var(--background)] text-[var(--primary)] opacity-80 " +
           "font-sans";
 
         let legendItemsHtml = "";
