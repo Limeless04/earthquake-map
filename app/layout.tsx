@@ -4,8 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/layout/AppSidebar";
+import { LeftSidebar } from "@/components/layout/LeftSidebar";
+import { RightSidebar } from "@/components/layout/RightSidebar";
+import { BottomSidebar } from "@/components/layout/BottomSidebar";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -37,14 +38,17 @@ export default function RootLayout({
           enableSystem
           themes={["light", "dark", "tokyonight"]}
         >
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="w-full">
-              <Navbar />
+          <Navbar />
+          <div className="grid grid-cols-12 gap-4 p-4">
+            <LeftSidebar />
+            <main className="col-span-8">
               {children}
-              <Footer />
+              <BottomSidebar />
             </main>
-          </SidebarProvider>
+            <RightSidebar />
+          </div>
+
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

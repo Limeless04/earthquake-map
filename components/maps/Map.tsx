@@ -17,7 +17,6 @@ import SquircleLoading from "../loading/SpinnerLoading";
 import { DepthCategory } from "@/lib/utils/normalizeFeature";
 
 import { Legend } from "./LegendOverlay";
-import { PieChart } from "../common/PieChart";
 
 type LatLng = [number, number]; // [lat, lng]
 
@@ -49,7 +48,6 @@ export default function MapClient() {
     deep: { fillColor: "green", displayName: "Deep Depth" },
   };
 
-  const isShowSeismicChart = true;
   if (isLoading) {
     return (
       <div className="flex items-center justify-center w-full h-[80vh]">
@@ -72,8 +70,8 @@ export default function MapClient() {
       worldCopyJump={true}
       scrollWheelZoom={true}
       style={{
-        height: "80vh",
-        width: "80%",
+        height: "60vh",
+        width: "100%",
         zIndex: 1,
         borderRadius: "1em",
       }}
@@ -108,8 +106,6 @@ https://aeic.bmkg.go.id/
           <TileLayer url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" />
         </LayersControl.BaseLayer>
       </LayersControl>
-
-      {isShowSeismicChart && <PieChart />}
 
       <Legend fillColors={fillColors} title="Seismic Depth" />
       {data &&

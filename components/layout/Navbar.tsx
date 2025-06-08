@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ThemeSelect } from "./ThemeSelect";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 export const Navbar = () => {
   return (
     <nav className="bg-[var(--background)] shadow-md py-4 px-6 flex justify-between items-center ">
@@ -12,7 +11,6 @@ export const Navbar = () => {
       </Link>
 
       <div className="flex items-center space-x-3">
-        <SidebarTrigger />
         <Link
           href="/about"
           className="text-[var(--primary)] hover:text-[var(--accent)] transition-colors"

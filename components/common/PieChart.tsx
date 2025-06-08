@@ -44,34 +44,14 @@ export const PieChart = (props: {}) => {
   };
   return (
     <>
-      <button
-        className="fixed bottom-4 left-4 bg-blue-600 text-white px-4 py-2 rounded shadow z-[5001]"
-        onClick={() => setShowChart((prev) => !prev)}
-      >
-        {showChart ? (
-          <div className="flex items-center gap-1">
-            <ChevronDownIcon size={16} />
-            Hide Chart
-          </div>
-        ) : (
-          <div className="flex items-center gap-1">
-            <ChevronUpIcon size={16} />
-            Show Chart
-          </div>
-        )}
-      </button>
-
-      {/* Pie Chart */}
-      {showChart && (
-        <div className="fixed bottom-20 left-4 bg-[var(--background)] p-4 rounded-lg shadow-lg z-[5000] w-80">
-          <h1 className="text-center text-lg font-semibold mb-2">
-            Seismic Pie Chart
-          </h1>
-          <div className="h-64 w-full">
-            <Pie data={seismicData} options={options} />
-          </div>
+      <div className=" p-4">
+        <h1 className="text-center text-lg font-semibold mb-2">
+          Seismic Pie Chart
+        </h1>
+        <div className="h-64 w-full">
+          <Pie data={seismicData} options={options} />
         </div>
-      )}
+      </div>
     </>
   );
 };
