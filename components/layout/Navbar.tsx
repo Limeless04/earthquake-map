@@ -1,6 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { ThemeSelect } from "./ThemeSelect";
+import { useSettingStore } from "@/providers/SettingProvider";
+import { Button } from "../ui/button";
+import { SettingsDropdown } from "../common/SettingsDropdown";
+
 export const Navbar = () => {
+  const { toggleShow } = useSettingStore((state) => state);
+
   return (
     <header className="bg-[var(--background)] text-white p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div className="flex items-center space-x-4">
@@ -18,6 +26,7 @@ export const Navbar = () => {
         >
           About
         </Link>
+        <SettingsDropdown />
         <ThemeSelect />
       </nav>
     </header>

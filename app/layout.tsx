@@ -7,6 +7,8 @@ import { Footer } from "@/components/layout/Footer";
 import { LeftSidebar } from "@/components/layout/LeftSidebar";
 import { RightSidebar } from "@/components/layout/RightSidebar";
 import { BottomSidebar } from "@/components/layout/BottomSidebar";
+import { SettingStoreProvider } from "@/providers/SettingProvider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -38,17 +40,19 @@ export default function RootLayout({
           enableSystem
           themes={["light", "dark", "tokyonight"]}
         >
-          <Navbar />
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4">
-            <LeftSidebar />
-            <main className="md:col-span-8">
-              {children}
-              <BottomSidebar />
-            </main>
-            <RightSidebar />
-          </div>
+          <SettingStoreProvider>
+            <Navbar />
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 p-4">
+              <LeftSidebar />
+              <main className="md:col-span-8">
+                {children}
+                <BottomSidebar />
+              </main>
+              <RightSidebar />
+            </div>
 
-          <Footer />
+            <Footer />
+          </SettingStoreProvider>
         </ThemeProvider>
       </body>
     </html>

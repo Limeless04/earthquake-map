@@ -8,7 +8,7 @@ import {
 export const useEarthquakeData = (): {
   data?: NormalizedFeature[];
   error: any;
-  isLoading: boolean;
+  isLoading: false;
 } => {
   const gistBase = process.env.NEXT_PUBLIC_GITHUB_GIST;
   const shouldFetch = !!gistBase;

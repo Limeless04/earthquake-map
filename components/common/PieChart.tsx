@@ -44,7 +44,7 @@ export const PieChart = (props: {}) => {
   };
   return (
     <>
-      <div className=" p-4">
+      <div className="p-4">
         <h1 className="text-center text-lg font-semibold mb-2">
           Seismic Pie Chart
         </h1>
