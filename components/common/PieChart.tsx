@@ -4,30 +4,53 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+import { useEarthquakeStore } from "@/providers/StateProvider";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const PieChart = (props: {}) => {
-  const [showChart, setShowChart] = useState(false);
+
+  const { data } = useEarthquakeStore((state) => state)
+
+
+  // Count events by depth category
+  const depthCounts = {
+    shallow: 0,
+    intermediate: 0,
+    deep: 0,
+  };
+
+
+  data.forEach((event) => {
+    const depth = event.properties.depth;
+    if (depth <= 30) {
+      depthCounts.shallow += 1;
+    } else if (depth > 30 && depth <= 100) {
+      depthCounts.intermediate += 1;
+    } else {
+      depthCounts.deep += 1;
+    }
+  });
+
   const seismicData = {
     labels: [
-      "Shallow (0-70 km)",
-      "Intermediate (70-300 km)",
-      "Deep (300-700 km)",
+      "Shallow (0-30 km)",
+      "Intermediate (30-100 km)",
+      "Deep (> 100 km)",
     ],
     datasets: [
       {
         label: "Seismic Events by Depth",
-        data: [65, 25, 10], // Replace with your actual counts/percentages
-        backgroundColor: [
-          "#FF6384", // Red for shallow
-          "#36A2EB", // Blue for intermediate
-          "#FFCE56", // Yellow for deep
+        data: [
+          depthCounts.shallow,
+          depthCounts.intermediate,
+          depthCounts.deep,
         ],
-        borderColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        backgroundColor: ["#FF0000", "#FFFF00", "#00AA00"], // Base colors
+        borderColor: ["#FF0000", "#FFFF00", "#00AA00"], // Match border with background
         borderWidth: 2,
-        hoverBackgroundColor: ["#FF6384CC", "#36A2EBCC", "#FFCE56CC"],
-        hoverBorderColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        hoverBackgroundColor: ["#FF0000CC", "#FFFF00CC", "#00AA00CC"], // Semi-transparent on hover
+        hoverBorderColor: ["#FF0000", "#FFFF00", "#00AA00"],
         hoverBorderWidth: 3,
       },
     ],

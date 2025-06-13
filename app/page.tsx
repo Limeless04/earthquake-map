@@ -1,6 +1,7 @@
 "use client";
 import SquircleLoading from "@/components/loading/SpinnerLoading";
 
+
 import dynamic from "next/dynamic";
 const MapClient = dynamic(() => import("@/components/maps/Map"), {
   ssr: false,

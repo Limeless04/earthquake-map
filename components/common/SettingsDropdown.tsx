@@ -12,7 +12,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Switch } from "../ui/switch";
 import { Label } from "../ui/label";
-import { useSettingStore } from "@/providers/SettingProvider";
+import { useSettingStore } from "@/providers/StateProvider";
 
 export const SettingsDropdown = (props: {}) => {
   const {

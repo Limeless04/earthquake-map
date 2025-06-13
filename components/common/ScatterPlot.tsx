@@ -1,6 +1,7 @@
 import { Scatter } from "react-chartjs-2";
 import {
   Chart as ChartJS,
+  TimeScale,
   CategoryScale,
   LinearScale,
   BarElement,
@@ -10,9 +11,12 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import 'chartjs-adapter-date-fns';
+import { useEarthquakeStore } from "@/providers/StateProvider";
 
 ChartJS.register(
   CategoryScale,
+  TimeScale,    
   LinearScale,
   BarElement,
   PointElement,
@@ -22,35 +26,48 @@ ChartJS.register(
   Legend,
 );
 
-const distributionData = {
-  datasets: [
-    {
-      label: "Magnitude vs Time",
-      data: [
-        { x: "Jul 2022", y: 6.7 },
-        { x: "Sep 2022", y: 7.1 },
-        { x: "Nov 2022", y: 6.5 },
-        { x: "Jan 2023", y: 7.2 },
-        { x: "Mar 2023", y: 6.8 },
-        { x: "May 2023", y: 7.5 },
-        { x: "Jul 2023", y: 6.9 },
-        { x: "Sep 2023", y: 6.6 },
-        { x: "Nov 2023", y: 7.0 },
-        { x: "Jan 2024", y: 6.7 },
-      ],
-      backgroundColor: "#facc15",
-    },
-  ],
-};
+export const ScatterPlot = () => {
+  const { data } = useEarthquakeStore((state) => state);
+  console.log(data)
+  // Format data: one dot per earthquake
+  const points = data.map((item) => {
+    return {
+      x: new Date(item.properties.time), // Use actual time
+      y: item.properties.mag,
+    };
+  });
 
-export const ScatterPlot = (props: {}) => {
+  const distributionData = {
+    datasets: [
+      {
+        label: "Magnitude over Time",
+        data: points,
+        backgroundColor: "#facc15",
+        pointRadius: 4,
+      },
+    ],
+  };
   return (
     <Scatter
       data={distributionData}
       options={{
         responsive: true,
         plugins: { legend: { display: false } },
-        scales: { x: { type: "category" }, y: { min: 6.0, max: 9.5 } },
+        scales: {
+          x: {
+            type: "time",
+            time: {
+              unit: "month", // or "day" depending on granularity
+              tooltipFormat: "PPpp", // formatted tooltip
+            },
+            title: { display: true, text: "Time" },
+          },
+          y: {
+            title: { display: true, text: "Magnitude" },
+            min: 0,
+            max: 10,
+          },
+        },
       }}
     />
   );

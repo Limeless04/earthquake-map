@@ -1,18 +1,20 @@
+// "use client";	
+
 import useSWR from "swr";
 import { EarthquakeFeature } from "@/lib/types/earthquake";
-import {
-  NormalizedFeature,
-  normalizeFeature,
-} from "@/lib/utils/normalizeFeature";
+import { NormalizedFeature } from "@/lib/utils/normalizeFeature";
+import { useEarthquakeStore } from "@/providers/StateProvider";
 
 export const useEarthquakeData = (): {
   data?: NormalizedFeature[];
   error: any;
-  isLoading: false;
+  isLoading: boolean;
 } => {
   const gistBase = process.env.NEXT_PUBLIC_GITHUB_GIST;
   const shouldFetch = !!gistBase;
   const url = shouldFetch ? `${gistBase}/earthquake-data` : null;
+
+  const { setData, setError, setLoading, filteredData, error, isLoading } = useEarthquakeStore((state) => state);
 
   const fetcher = async (url: string) => {
     const controller = new AbortController();
@@ -38,17 +40,20 @@ export const useEarthquakeData = (): {
     }
   };
 
-  const {
-    data: rawData,
-    error,
-    isLoading,
-  } = useSWR<EarthquakeFeature[]>(url, fetcher);
-  const data: NormalizedFeature[] | undefined = rawData
-    ? rawData.map(normalizeFeature)
-    : [];
+  useSWR<EarthquakeFeature[]>(url, fetcher, {
+    onSuccess: (data) => {
+      setData(data);
+      setLoading(false);
+    },
+    onError: (error) => {
+      setError(error);
+      setLoading(false);
+    },
+    onLoadingSlow: () => setLoading(true),
+  });
 
   return {
-    data,
+    data: filteredData,
     error,
     isLoading,
   };

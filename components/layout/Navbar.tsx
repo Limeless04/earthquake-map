@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { ThemeSelect } from "./ThemeSelect";
-import { useSettingStore } from "@/providers/SettingProvider";
+import { useSettingStore } from "@/providers/StateProvider";
 import { Button } from "../ui/button";
 import { SettingsDropdown } from "../common/SettingsDropdown";
 

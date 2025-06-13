@@ -3,8 +3,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { ScatterPlot } from "../common/ScatterPlot";
 import { HistogramCharts } from "../common/Histogram";
-import { useSettingStore } from "@/providers/SettingProvider";
-export const BottomSidebar = (props: {}) => {
+import { useSettingStore } from "@/providers/StateProvider";
+export const BottomSidebar = () => {
   const { showHistogram, showScatter } = useSettingStore((state) => state);
 
   return (
